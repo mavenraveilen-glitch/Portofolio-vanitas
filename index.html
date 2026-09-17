@@ -16,6 +16,14 @@
   <div class="bg-orb orb-3"></div>
   <div class="stars"></div>
 
+  <!-- Hidden audio elements -->
+  <audio id="audioMain" preload="metadata" crossorigin="anonymous">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="audioMini" preload="metadata" crossorigin="anonymous">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="portfolio-card fade-in">
 
     <!-- Top Navigation -->
@@ -24,7 +32,7 @@
         <button class="nav-grid-icon" aria-label="Menu">
           <i class="fa-solid fa-border-all"></i>
         </button>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
           <a href="#" class="active">Home</a>
           <a href="#profile">Profile</a>
           <a href="#gallery">Gallery</a>
@@ -34,7 +42,16 @@
       </div>
       <div class="nav-right">
         <div class="avatar-small">
-          <img src="https://i.imgur.com/8QZQZQZ.png" alt="Vanitas" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%230284c7%22/%3E%3Ctext x=%2250%22 y=%2260%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3EV%3C/text%3E%3C/svg%3E'">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#0c4a6e"/>
+            <circle cx="50" cy="42" r="22" fill="#f0f9ff"/>
+            <path d="M28 38 Q25 20 40 15 Q50 10 60 15 Q75 20 72 38 Q70 55 50 58 Q30 55 28 38" fill="#0f172a"/>
+            <circle cx="42" cy="42" r="5" fill="#0284c7"/>
+            <circle cx="58" cy="42" r="5" fill="#0284c7"/>
+            <circle cx="43.5" cy="40.5" r="2" fill="#fff"/>
+            <circle cx="59.5" cy="40.5" r="2" fill="#fff"/>
+            <path d="M42 55 Q50 62 58 55" fill="none" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+          </svg>
         </div>
         <button class="nav-icon" aria-label="Messages"><i class="fa-regular fa-envelope"></i></button>
         <button class="nav-icon" aria-label="Notifications"><i class="fa-regular fa-bell"></i></button>
@@ -56,7 +73,7 @@
           <div class="stat-left">
             <span class="label">Birthday</span>
             <span class="big-num glow-text">07</span>
-            <span class="sub-text">February 2011</span>
+            <span class="sub-text">Feb / Aquarius</span>
             <div class="progress-bar">
               <div class="progress-fill"></div>
             </div>
@@ -75,21 +92,25 @@
 
         <!-- Music Player -->
         <div class="glass-card music-card float-hover" id="playlist">
-          <div class="album-art spinning-art">
+          <div class="album-art" id="mainAlbum">
             <div class="vinyl-inner">
               <i class="fa-solid fa-book-open"></i>
             </div>
           </div>
           <div class="player-info">
-            <h4>Blue Moon Grimoire</h4>
-            <p>by Sasanomaly</p>
+            <h4>Sora to Utsuro</h4>
+            <p>by Sasanomaly · OP Theme</p>
             <div class="controls">
-              <button aria-label="Previous"><i class="fa-solid fa-backward-step"></i></button>
-              <button class="play-btn pulse-btn" aria-label="Play"><i class="fa-solid fa-play"></i></button>
-              <button aria-label="Next"><i class="fa-solid fa-forward-step"></i></button>
+              <button class="ctrl-btn" id="prevMain" aria-label="Previous"><i class="fa-solid fa-backward-step"></i></button>
+              <button class="play-btn pulse-btn" id="playMain" aria-label="Play"><i class="fa-solid fa-play"></i></button>
+              <button class="ctrl-btn" id="nextMain" aria-label="Next"><i class="fa-solid fa-forward-step"></i></button>
             </div>
-            <div class="progress-track">
-              <div class="progress-current"></div>
+            <div class="progress-track" id="progressMainTrack">
+              <div class="progress-current" id="progressMain"></div>
+            </div>
+            <div class="time-row">
+              <span id="timeCurrent">0:00</span>
+              <span id="timeTotal">0:00</span>
             </div>
           </div>
         </div>
@@ -98,8 +119,8 @@
         <div class="glass-card name-banner float-hover" id="profile">
           <div class="name-content">
             <h2>✧ vanitas ✧</h2>
-            <p class="tagline">♡ just an ordinary human wielding the cursed grimoire to save vampires.</p>
-            <button class="action-btn glow-button">View Profile</button>
+            <p class="tagline">♡ Just an ordinary human wielding the cursed grimoire to save vampires.</p>
+            <button class="action-btn glow-button" id="viewProfile">View Profile</button>
           </div>
         </div>
 
@@ -108,84 +129,111 @@
       <!-- Right Column - Character -->
       <div class="hero-section">
         <div class="character-container">
-          <!-- Character illustration (SVG based elegant silhouette + details) -->
           <div class="character-art float-animation">
-            <svg viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg" class="vanitas-svg">
-              <!-- Soft glow circle -->
+            <!-- Improved Vanitas SVG matching anime look -->
+            <svg viewBox="0 0 420 560" xmlns="http://www.w3.org/2000/svg" class="vanitas-svg">
               <defs>
-                <radialGradient id="moonGlow" cx="50%" cy="40%" r="50%">
-                  <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+                <radialGradient id="moonGlow" cx="50%" cy="35%" r="55%">
+                  <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4"/>
+                  <stop offset="70%" stop-color="#0284c7" stop-opacity="0.08"/>
                   <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
                 </radialGradient>
                 <linearGradient id="coatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#0f172a"/>
-                  <stop offset="100%" stop-color="#1e3a5f"/>
+                  <stop offset="50%" stop-color="#1e293b"/>
+                  <stop offset="100%" stop-color="#0c1929"/>
+                </linearGradient>
+                <linearGradient id="vestGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#0369a1"/>
+                  <stop offset="100%" stop-color="#0ea5e9"/>
                 </linearGradient>
                 <linearGradient id="hairGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stop-color="#1e293b"/>
-                  <stop offset="100%" stop-color="#0f172a"/>
+                  <stop offset="100%" stop-color="#020617"/>
                 </linearGradient>
+                <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
               </defs>
-              
-              <!-- Background moon glow -->
-              <circle cx="200" cy="180" r="160" fill="url(#moonGlow)"/>
-              
-              <!-- Coat / body silhouette -->
-              <path d="M120 220 Q100 280 110 360 L110 480 Q140 500 200 500 Q260 500 290 480 L290 360 Q300 280 280 220 Z" fill="url(#coatGrad)" opacity="0.95"/>
-              
+
+              <!-- Moon glow -->
+              <circle cx="210" cy="190" r="175" fill="url(#moonGlow)"/>
+
+              <!-- Coat body (large black coat) -->
+              <path d="M95 230 Q70 300 85 400 L90 520 Q130 545 210 545 Q290 545 330 520 L335 400 Q350 300 325 230 Z" fill="url(#coatGrad)" opacity="0.97"/>
+              <!-- Coat collar / lapels -->
+              <path d="M140 230 Q160 210 210 215 Q260 210 280 230 L270 280 Q210 260 150 280 Z" fill="#0f172a"/>
+              <!-- Coat sleeves (bat-like) -->
+              <path d="M95 260 Q40 300 50 380 Q70 350 100 340" fill="#0f172a" opacity="0.9"/>
+              <path d="M325 260 Q380 300 370 380 Q350 350 320 340" fill="#0f172a" opacity="0.9"/>
+
               <!-- White shirt -->
-              <path d="M155 230 Q150 280 155 340 L245 340 Q250 280 245 230 Z" fill="#e0f2fe" opacity="0.9"/>
-              
+              <path d="M155 245 Q150 310 158 370 L262 370 Q270 310 265 245 Z" fill="#e0f2fe"/>
+
               <!-- Blue striped vest -->
-              <path d="M160 235 L160 330 L240 330 L240 235 Z" fill="#0369a1" opacity="0.85"/>
-              <line x1="175" y1="240" x2="175" y2="325" stroke="#7dd3fc" stroke-width="3" opacity="0.6"/>
-              <line x1="190" y1="240" x2="190" y2="325" stroke="#7dd3fc" stroke-width="3" opacity="0.6"/>
-              <line x1="205" y1="240" x2="205" y2="325" stroke="#7dd3fc" stroke-width="3" opacity="0.6"/>
-              <line x1="220" y1="240" x2="220" y2="325" stroke="#7dd3fc" stroke-width="3" opacity="0.6"/>
-              
-              <!-- Bow tie -->
-              <path d="M175 245 Q200 255 225 245 Q200 265 175 245" fill="#0ea5e9"/>
-              <circle cx="200" cy="250" r="6" fill="#38bdf8"/>
-              
+              <path d="M162 250 L162 360 L258 360 L258 250 Z" fill="url(#vestGrad)" opacity="0.9"/>
+              <line x1="178" y1="255" x2="178" y2="355" stroke="#7dd3fc" stroke-width="3.5" opacity="0.65"/>
+              <line x1="196" y1="255" x2="196" y2="355" stroke="#7dd3fc" stroke-width="3.5" opacity="0.65"/>
+              <line x1="214" y1="255" x2="214" y2="355" stroke="#7dd3fc" stroke-width="3.5" opacity="0.65"/>
+              <line x1="232" y1="255" x2="232" y2="355" stroke="#7dd3fc" stroke-width="3.5" opacity="0.65"/>
+              <line x1="248" y1="255" x2="248" y2="355" stroke="#7dd3fc" stroke-width="3.5" opacity="0.65"/>
+
+              <!-- Large blue bow tie -->
+              <path d="M170 255 Q210 280 250 255 Q210 300 170 255" fill="#0ea5e9"/>
+              <circle cx="210" cy="265" r="8" fill="#38bdf8"/>
+              <path d="M200 260 L210 275 L220 260" fill="none" stroke="#0284c7" stroke-width="2"/>
+
               <!-- Neck -->
-              <rect x="185" y="195" width="30" height="40" rx="8" fill="#f0f9ff"/>
-              
+              <rect x="190" y="200" width="40" height="50" rx="10" fill="#f0f9ff"/>
+
               <!-- Head -->
-              <ellipse cx="200" cy="155" rx="48" ry="55" fill="#f0f9ff"/>
-              
-              <!-- Hair (long black, irregular) -->
-              <path d="M145 140 Q130 100 155 80 Q180 60 200 65 Q220 60 245 80 Q270 100 255 140 Q260 180 250 210 Q230 190 200 195 Q170 190 150 210 Q140 180 145 140" fill="url(#hairGrad)"/>
-              <!-- Bangs -->
-              <path d="M160 130 Q175 115 200 120 Q225 115 240 130 Q230 145 200 148 Q170 145 160 130" fill="#0f172a"/>
-              <!-- Side hair strands -->
-              <path d="M148 150 Q140 200 145 260 Q155 230 160 180" fill="#0f172a" opacity="0.9"/>
-              <path d="M252 150 Q260 200 255 260 Q245 230 240 180" fill="#0f172a" opacity="0.9"/>
-              
-              <!-- Eyes (bright blue) -->
-              <ellipse cx="180" cy="155" rx="12" ry="14" fill="#fff"/>
-              <ellipse cx="220" cy="155" rx="12" ry="14" fill="#fff"/>
-              <circle cx="182" cy="157" r="7" fill="#0284c7"/>
-              <circle cx="222" cy="157" r="7" fill="#0284c7"/>
-              <circle cx="184" cy="155" r="3" fill="#fff"/>
-              <circle cx="224" cy="155" r="3" fill="#fff"/>
-              
-              <!-- Smile -->
-              <path d="M185 180 Q200 192 215 180" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round"/>
-              
-              <!-- Hourglass earring -->
-              <g transform="translate(250, 160)">
-                <path d="M0 0 L8 12 L0 24 L-8 12 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1"/>
-                <line x1="0" y1="-5" x2="0" y2="0" stroke="#94a3b8" stroke-width="1.5"/>
+              <ellipse cx="210" cy="155" rx="52" ry="58" fill="#f0f9ff"/>
+
+              <!-- Hair - long messy black with irregular cut -->
+              <path d="M145 145 Q125 90 155 70 Q185 50 210 55 Q235 50 265 70 Q295 90 275 145 Q285 200 270 250 Q240 220 210 230 Q180 220 150 250 Q135 200 145 145" fill="url(#hairGrad)"/>
+              <!-- Bangs falling into face -->
+              <path d="M165 130 Q185 105 210 115 Q235 105 255 130 Q245 155 210 160 Q175 155 165 130" fill="#0f172a"/>
+              <!-- Side strands -->
+              <path d="M148 155 Q135 220 148 290 Q160 250 165 200" fill="#0f172a"/>
+              <path d="M272 155 Q285 220 272 290 Q260 250 255 200" fill="#0f172a"/>
+              <!-- Cowlick -->
+              <path d="M225 75 Q235 55 245 70 Q238 85 225 80" fill="#0f172a"/>
+
+              <!-- Eyes - bright copper sulfate blue -->
+              <ellipse cx="188" cy="155" rx="13" ry="15" fill="#fff"/>
+              <ellipse cx="232" cy="155" rx="13" ry="15" fill="#fff"/>
+              <circle cx="190" cy="157" r="8" fill="#0284c7"/>
+              <circle cx="234" cy="157" r="8" fill="#0284c7"/>
+              <circle cx="192" cy="154" r="3.5" fill="#fff"/>
+              <circle cx="236" cy="154" r="3.5" fill="#fff"/>
+              <!-- Slight fang hint smile -->
+              <path d="M192 182 Q210 198 228 182" fill="none" stroke="#0f172a" stroke-width="2.8" stroke-linecap="round"/>
+
+              <!-- Hourglass earring (left ear) -->
+              <g transform="translate(265, 165)" filter="url(#softGlow)">
+                <line x1="0" y1="-8" x2="0" y2="0" stroke="#94a3b8" stroke-width="2"/>
+                <path d="M0 0 L10 14 L0 28 L-10 14 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.5"/>
+                <line x1="-6" y1="14" x2="6" y2="14" stroke="#0c4a6e" stroke-width="1.5"/>
               </g>
-              
-              <!-- Book of Vanitas floating -->
-              <g class="floating-book" transform="translate(280, 280)">
-                <rect x="0" y="0" width="55" height="70" rx="4" fill="#0c4a6e" stroke="#38bdf8" stroke-width="2"/>
-                <rect x="5" y="8" width="45" height="8" rx="2" fill="#7dd3fc" opacity="0.7"/>
-                <rect x="5" y="22" width="35" height="4" rx="1" fill="#38bdf8" opacity="0.5"/>
-                <rect x="5" y="32" width="40" height="4" rx="1" fill="#38bdf8" opacity="0.5"/>
-                <circle cx="27" cy="52" r="10" fill="none" stroke="#7dd3fc" stroke-width="2"/>
-                <path d="M22 52 L27 57 L35 47" fill="none" stroke="#7dd3fc" stroke-width="2"/>
+              <!-- Small stud right ear -->
+              <circle cx="155" cy="165" r="3" fill="#94a3b8"/>
+
+              <!-- Floating Book of Vanitas -->
+              <g class="floating-book">
+                <rect x="300" y="300" width="70" height="90" rx="5" fill="#0c4a6e" stroke="#38bdf8" stroke-width="2.5"/>
+                <rect x="308" y="312" width="54" height="10" rx="2" fill="#7dd3fc" opacity="0.75"/>
+                <rect x="308" y="330" width="42" height="5" rx="1" fill="#38bdf8" opacity="0.5"/>
+                <rect x="308" y="342" width="48" height="5" rx="1" fill="#38bdf8" opacity="0.5"/>
+                <rect x="308" y="354" width="38" height="5" rx="1" fill="#38bdf8" opacity="0.5"/>
+                <circle cx="335" cy="375" r="12" fill="none" stroke="#7dd3fc" stroke-width="2.5"/>
+                <path d="M328 375 L335 382 L345 368" fill="none" stroke="#7dd3fc" stroke-width="2.5"/>
+                <!-- Chains -->
+                <circle cx="310" cy="305" r="4" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                <circle cx="360" cy="305" r="4" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
               </g>
             </svg>
           </div>
@@ -208,14 +256,14 @@
           <i class="fa-solid fa-house"></i>
           <h4>About Me</h4>
         </div>
-        <p>I daydream a lot about the blue moon and believe in rewriting the world formula, one curse at a time. I cure Malnomen with the Book of Vanitas and disrupt Charlatan's plans alongside Noé.</p>
+        <p>I cure Malnomen curses using the Book of Vanitas and disrupt Charlatan's plans alongside Noé. Just a human who decided to become a vampire doctor.</p>
         <div class="tags">
-          <span>Anime</span>
-          <span>Music</span>
-          <span>Manga</span>
-          <span>Grimoire</span>
-          <span>Paris</span>
-          <span>Cats</span>
+          <span>#Grimoire</span>
+          <span>#VampireDoctor</span>
+          <span>#Noé</span>
+          <span>#Jeanne</span>
+          <span>#Paris</span>
+          <span>#BlueMoon</span>
         </div>
       </div>
 
@@ -246,16 +294,16 @@
 
       <!-- Mini Player -->
       <div class="glass-card music-card mini-player float-hover">
-        <div class="vinyl-art spin-slow">
+        <div class="vinyl-art" id="miniAlbum">
           <i class="fa-solid fa-record-vinyl"></i>
         </div>
         <div class="player-info">
-          <h4>kawaii kaiwai</h4>
-          <p>by piki</p>
+          <h4>0 (zero)</h4>
+          <p>by LMYK · ED Theme</p>
           <div class="controls">
-            <button aria-label="Previous"><i class="fa-solid fa-backward-step"></i></button>
-            <button class="play-btn pulse-btn" aria-label="Play"><i class="fa-solid fa-play"></i></button>
-            <button aria-label="Next"><i class="fa-solid fa-forward-step"></i></button>
+            <button class="ctrl-btn" id="prevMini" aria-label="Previous"><i class="fa-solid fa-backward-step"></i></button>
+            <button class="play-btn pulse-btn" id="playMini" aria-label="Play"><i class="fa-solid fa-play"></i></button>
+            <button class="ctrl-btn" id="nextMini" aria-label="Next"><i class="fa-solid fa-forward-step"></i></button>
           </div>
         </div>
       </div>
@@ -269,11 +317,11 @@
       </div>
       <div class="years">
         <span class="years-label">Years Active</span>
-        <span class="years-num glow-text">2026</span>
+        <span class="years-num glow-text">2021</span>
         <span class="years-sub">– Present</span>
       </div>
       <div class="search-bar">
-        <input type="text" placeholder="find your favorite" />
+        <input type="text" placeholder="find your favorite" id="searchInput" />
         <button aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
         <button aria-label="Message"><i class="fa-regular fa-envelope"></i></button>
       </div>

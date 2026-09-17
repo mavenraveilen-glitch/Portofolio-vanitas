@@ -387,12 +387,21 @@ body {
   color: #0f172a;
   font-size: 1.2rem;
 }
-.spinning-art {
-  animation: spin 12s linear infinite;
+.album-art.spinning,
+.vinyl-art.spinning {
+  animation: spin 8s linear infinite;
 }
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 4px;
 }
 
 .player-info {
@@ -712,9 +721,6 @@ body {
   color: #0f172a;
   font-size: 1.5rem;
   box-shadow: 0 0 18px rgba(56, 189, 248, 0.3);
-}
-.spin-slow {
-  animation: spin 18s linear infinite;
 }
 .mini-player .player-info h4 {
   font-size: 0.9rem;
