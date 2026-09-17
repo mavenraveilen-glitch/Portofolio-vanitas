@@ -10,12 +10,16 @@
 </head>
 <body>
 
-  <!-- Main Container -->
-  <div class="portfolio-card">
+  <!-- Glowing Blue Ambient Orbs in Background -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <!-- Main Animated Container -->
+  <div class="portfolio-card fade-in">
 
     <!-- Top Navigation Bar -->
     <nav class="navbar">
-      <div class="nav-grid-icon"><i class="fa-solid fa-grid-2"></i></div>
+      <div class="nav-grid-icon"><i class="fa-solid fa-border-all"></i></div>
       <div class="nav-links">
         <a href="#" class="active">Home</a>
         <a href="#">Profile</a>
@@ -27,7 +31,7 @@
         <img src="vanitas-avatar.jpg" alt="Vanitas Profile" class="avatar-small" />
         <i class="fa-regular fa-envelope nav-icon"></i>
         <i class="fa-regular fa-bell nav-icon"></i>
-        <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+        <button class="add-btn pulse-glow"><i class="fa-solid fa-plus"></i></button>
       </div>
     </nav>
 
@@ -37,17 +41,17 @@
       <!-- Left Column: Information Cards -->
       <div class="left-col">
 
-        <!-- Stat / Bio Card -->
-        <div class="glass-card stat-card">
+        <!-- Stat Card -->
+        <div class="glass-card stat-card float-hover">
           <div class="stat-left">
             <span class="label">Birthday</span>
-            <span class="big-num">07</span>
-            <span class="sub-text">Feb / Blue Moon</span>
+            <span class="big-num glow-text">07</span>
+            <span class="sub-text">Feb / Aquarius</span>
           </div>
           <div class="stat-right">
             <div class="info-group">
               <span class="label">Personality</span>
-              <span class="val-pill">Arrogant, Cunning, Passionate</span>
+              <span class="val-pill">Arrogant, Cunning, Sharp</span>
             </div>
             <div class="info-group">
               <span class="label">Role</span>
@@ -56,17 +60,17 @@
           </div>
         </div>
 
-        <!-- Music / Audio Player 1 -->
-        <div class="glass-card music-card">
-          <div class="album-art">
+        <!-- Music / Audio Player -->
+        <div class="glass-card music-card float-hover">
+          <div class="album-art spinning-art">
             <img src="book-of-vanitas.jpg" alt="Grimoire Cover" />
           </div>
           <div class="player-controls">
             <h4>Blue Moon Grimoire</h4>
-            <p>by Lucius</p>
+            <p>by Sasanomaly</p>
             <div class="controls">
               <i class="fa-solid fa-backward-step"></i>
-              <i class="fa-solid fa-play play-btn"></i>
+              <i class="fa-solid fa-play play-btn pulse-btn"></i>
               <i class="fa-solid fa-forward-step"></i>
             </div>
           </div>
@@ -74,27 +78,27 @@
 
         <!-- Banner Title Section -->
         <div class="banner-text">
-          <h2>Let's Inherit <br>The <span class="glow-blue">Blue Moon</span></h2>
+          <h2>Let's Inherit <br>The <span class="glow-blue shimmer-text">Blue Moon</span></h2>
         </div>
 
         <!-- Hero Card Tagline -->
-        <div class="glass-card bio-banner">
+        <div class="glass-card bio-banner float-hover">
           <h3>Vanitas of the Blue Moon</h3>
-          <p>♡ Just a human wielding the cursed grimoire to save vampires.</p>
-          <button class="action-btn">View Profile</button>
+          <p>♡ Just an ordinary human wielding the cursed grimoire to save vampires.</p>
+          <button class="action-btn glow-button">View Profile</button>
         </div>
 
       </div>
 
-      <!-- Center/Right Column: Character Artwork -->
+      <!-- Right Column: Character Artwork -->
       <div class="hero-character-section">
-        <!-- Main Character Image -->
-        <img src="vanitas-full.png" alt="Vanitas" class="hero-character-img" />
+        <!-- Floating Character Artwork -->
+        <img src="vanitas-full.png" alt="Vanitas Character" class="hero-character-img float-animation" />
 
-        <!-- Floating Sidebar Buttons -->
+        <!-- Floating Interactive Sidebar Buttons -->
         <div class="floating-actions">
-          <button class="float-btn"><i class="fa-solid fa-user-plus"></i></button>
-          <button class="float-btn"><i class="fa-solid fa-comment"></i></button>
+          <button class="float-btn pulse-icon"><i class="fa-solid fa-user-plus"></i></button>
+          <button class="float-btn pulse-icon"><i class="fa-solid fa-comment"></i></button>
         </div>
       </div>
 
@@ -104,42 +108,41 @@
     <div class="bottom-wrapper">
 
       <!-- About Me Box -->
-      <div class="glass-card about-box">
+      <div class="glass-card about-box float-hover">
         <h4>About Me</h4>
-        <p>I specialize in curing Malnomen and disrupting the plans of Charlatan. Driven by vengeance and a commitment to my promise.</p>
+        <p>I cure Malnomen curses using the Book of Vanitas and disrupt Charlatan's plans alongside Noé.</p>
         <div class="tags">
-          <span>Grimoire</span>
-          <span>Blue Eyes</span>
-          <span>Human</span>
-          <span>Noé</span>
-          <span>Jeanne</span>
+          <span>#Grimoire</span>
+          <span>#VampireDoctor</span>
+          <span>#Noé</span>
+          <span>#Jeanne</span>
         </div>
       </div>
 
       <!-- Media Gallery Thumbnails -->
-      <div class="glass-card media-box">
+      <div class="glass-card media-box float-hover">
         <div class="media-header">
           <h4>Media</h4>
           <a href="#">See All <i class="fa-solid fa-chevron-right"></i></a>
         </div>
         <div class="thumb-grid">
-          <img src="media1.jpg" alt="Vanitas Eye" />
-          <img src="media2.jpg" alt="Paris Scenery" />
-          <img src="media3.jpg" alt="Jeanne" />
+          <div class="img-zoom"><img src="media1.jpg" alt="Vanitas Eye" /></div>
+          <div class="img-zoom"><img src="media2.jpg" alt="Paris Scenery" /></div>
+          <div class="img-zoom"><img src="media3.jpg" alt="Jeanne" /></div>
         </div>
       </div>
 
-      <!-- Secondary Music Player -->
-      <div class="glass-card music-card mini-player">
-        <div class="vinyl-art">
+      <!-- Secondary Mini Audio Player -->
+      <div class="glass-card music-card mini-player float-hover">
+        <div class="vinyl-art spin-slow">
           <i class="fa-solid fa-record-vinyl"></i>
         </div>
         <div class="player-controls">
           <h4>Le Parisien</h4>
-          <p>by Sasanomaly</p>
+          <p>by Lucius</p>
           <div class="controls">
             <i class="fa-solid fa-backward-step"></i>
-            <i class="fa-solid fa-play play-btn"></i>
+            <i class="fa-solid fa-play play-btn pulse-btn"></i>
             <i class="fa-solid fa-forward-step"></i>
           </div>
         </div>
@@ -151,4 +154,3 @@
 
 </body>
 </html>
-
