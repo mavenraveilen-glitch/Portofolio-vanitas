@@ -130,29 +130,25 @@
       <div class="hero-section">
         <div class="character-container">
           <div class="character-art float-animation">
-            <!-- Improved Vanitas SVG matching anime look -->
+            <!-- Vanitas closer to official/fanart style -->
             <svg viewBox="0 0 420 560" xmlns="http://www.w3.org/2000/svg" class="vanitas-svg">
               <defs>
-                <radialGradient id="moonGlow" cx="50%" cy="35%" r="55%">
-                  <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4"/>
-                  <stop offset="70%" stop-color="#0284c7" stop-opacity="0.08"/>
+                <radialGradient id="moonGlow" cx="50%" cy="30%" r="60%">
+                  <stop offset="0%" stop-color="#7dd3fc" stop-opacity="0.45"/>
+                  <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.15"/>
                   <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
                 </radialGradient>
                 <linearGradient id="coatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#0f172a"/>
-                  <stop offset="50%" stop-color="#1e293b"/>
-                  <stop offset="100%" stop-color="#0c1929"/>
+                  <stop offset="60%" stop-color="#1e293b"/>
+                  <stop offset="100%" stop-color="#020617"/>
                 </linearGradient>
-                <linearGradient id="vestGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#0369a1"/>
-                  <stop offset="100%" stop-color="#0ea5e9"/>
-                </linearGradient>
-                <linearGradient id="hairGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <linearGradient id="hairGrad" x1="0%" y1="0%" x2="30%" y2="100%">
                   <stop offset="0%" stop-color="#1e293b"/>
                   <stop offset="100%" stop-color="#020617"/>
                 </linearGradient>
-                <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="2.5" result="blur"/>
                   <feMerge>
                     <feMergeNode in="blur"/>
                     <feMergeNode in="SourceGraphic"/>
@@ -160,80 +156,98 @@
                 </filter>
               </defs>
 
-              <!-- Moon glow -->
-              <circle cx="210" cy="190" r="175" fill="url(#moonGlow)"/>
+              <!-- Soft blue moon glow behind -->
+              <circle cx="210" cy="180" r="190" fill="url(#moonGlow)"/>
 
-              <!-- Coat body (large black coat) -->
-              <path d="M95 230 Q70 300 85 400 L90 520 Q130 545 210 545 Q290 545 330 520 L335 400 Q350 300 325 230 Z" fill="url(#coatGrad)" opacity="0.97"/>
-              <!-- Coat collar / lapels -->
-              <path d="M140 230 Q160 210 210 215 Q260 210 280 230 L270 280 Q210 260 150 280 Z" fill="#0f172a"/>
-              <!-- Coat sleeves (bat-like) -->
-              <path d="M95 260 Q40 300 50 380 Q70 350 100 340" fill="#0f172a" opacity="0.9"/>
-              <path d="M325 260 Q380 300 370 380 Q350 350 320 340" fill="#0f172a" opacity="0.9"/>
+              <!-- Dark coat (large, flowing) -->
+              <path d="M88 240 Q60 310 78 420 L85 530 Q140 555 210 555 Q280 555 335 530 L342 420 Q360 310 332 240 Z" fill="url(#coatGrad)"/>
+              <!-- Coat inner / open front -->
+              <path d="M150 250 Q160 320 155 400 L265 400 Q260 320 270 250 Z" fill="#0f172a" opacity="0.7"/>
+              <!-- Coat collar -->
+              <path d="M145 235 Q170 210 210 218 Q250 210 275 235 L265 275 Q210 255 155 275 Z" fill="#0f172a"/>
 
               <!-- White shirt -->
-              <path d="M155 245 Q150 310 158 370 L262 370 Q270 310 265 245 Z" fill="#e0f2fe"/>
+              <path d="M160 250 Q155 320 162 385 L258 385 Q265 320 260 250 Z" fill="#f0f9ff"/>
 
-              <!-- Blue striped vest -->
-              <path d="M162 250 L162 360 L258 360 L258 250 Z" fill="url(#vestGrad)" opacity="0.9"/>
-              <line x1="178" y1="255" x2="178" y2="355" stroke="#7dd3fc" stroke-width="3.5" opacity="0.65"/>
-              <line x1="196" y1="255" x2="196" y2="355" stroke="#7dd3fc" stroke-width="3.5" opacity="0.65"/>
-              <line x1="214" y1="255" x2="214" y2="355" stroke="#7dd3fc" stroke-width="3.5" opacity="0.65"/>
-              <line x1="232" y1="255" x2="232" y2="355" stroke="#7dd3fc" stroke-width="3.5" opacity="0.65"/>
-              <line x1="248" y1="255" x2="248" y2="355" stroke="#7dd3fc" stroke-width="3.5" opacity="0.65"/>
+              <!-- Blue vest with stripes -->
+              <path d="M168 258 L168 375 L252 375 L252 258 Z" fill="#0369a1" opacity="0.92"/>
+              <line x1="182" y1="265" x2="182" y2="370" stroke="#7dd3fc" stroke-width="3" opacity="0.7"/>
+              <line x1="198" y1="265" x2="198" y2="370" stroke="#7dd3fc" stroke-width="3" opacity="0.7"/>
+              <line x1="214" y1="265" x2="214" y2="370" stroke="#7dd3fc" stroke-width="3" opacity="0.7"/>
+              <line x1="230" y1="265" x2="230" y2="370" stroke="#7dd3fc" stroke-width="3" opacity="0.7"/>
 
-              <!-- Large blue bow tie -->
-              <path d="M170 255 Q210 280 250 255 Q210 300 170 255" fill="#0ea5e9"/>
-              <circle cx="210" cy="265" r="8" fill="#38bdf8"/>
-              <path d="M200 260 L210 275 L220 260" fill="none" stroke="#0284c7" stroke-width="2"/>
+              <!-- Large blue bow (signature) -->
+              <path d="M168 260 Q210 295 252 260 Q210 320 168 260" fill="#0ea5e9"/>
+              <ellipse cx="210" cy="272" rx="10" ry="9" fill="#38bdf8"/>
+              <path d="M200 265 L210 285 L220 265" fill="none" stroke="#0284c7" stroke-width="2.2"/>
 
               <!-- Neck -->
-              <rect x="190" y="200" width="40" height="50" rx="10" fill="#f0f9ff"/>
+              <rect x="192" y="205" width="36" height="52" rx="9" fill="#f0f9ff"/>
 
-              <!-- Head -->
-              <ellipse cx="210" cy="155" rx="52" ry="58" fill="#f0f9ff"/>
+              <!-- Head shape (slightly sharper anime style) -->
+              <ellipse cx="210" cy="150" rx="50" ry="56" fill="#f8fafc"/>
 
-              <!-- Hair - long messy black with irregular cut -->
-              <path d="M145 145 Q125 90 155 70 Q185 50 210 55 Q235 50 265 70 Q295 90 275 145 Q285 200 270 250 Q240 220 210 230 Q180 220 150 250 Q135 200 145 145" fill="url(#hairGrad)"/>
-              <!-- Bangs falling into face -->
-              <path d="M165 130 Q185 105 210 115 Q235 105 255 130 Q245 155 210 160 Q175 155 165 130" fill="#0f172a"/>
-              <!-- Side strands -->
-              <path d="M148 155 Q135 220 148 290 Q160 250 165 200" fill="#0f172a"/>
-              <path d="M272 155 Q285 220 272 290 Q260 250 255 200" fill="#0f172a"/>
-              <!-- Cowlick -->
-              <path d="M225 75 Q235 55 245 70 Q238 85 225 80" fill="#0f172a"/>
+              <!-- Hair - messy black, characteristic two-level cut + long strands -->
+              <!-- Main hair volume -->
+              <path d="M148 140 Q122 85 158 62 Q190 42 210 48 Q230 42 262 62 Q298 85 272 140 Q288 195 275 255 Q245 230 210 238 Q175 230 145 255 Q132 195 148 140" fill="url(#hairGrad)"/>
+              <!-- Front bangs (falling into face, irregular) -->
+              <path d="M162 125 Q182 98 210 108 Q238 98 258 125 Q250 150 210 155 Q170 150 162 125" fill="#0f172a"/>
+              <!-- Extra messy strands -->
+              <path d="M155 135 Q145 180 155 240 Q162 200 168 165" fill="#0f172a" opacity="0.95"/>
+              <path d="M265 135 Q275 180 265 240 Q258 200 252 165" fill="#0f172a" opacity="0.95"/>
+              <!-- Characteristic side cut (shorter on sides) -->
+              <path d="M140 155 Q128 200 142 250" fill="none" stroke="#0f172a" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+              <path d="M280 155 Q292 200 278 250" fill="none" stroke="#0f172a" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+              <!-- Cowlick / ahoge-ish strand -->
+              <path d="M228 68 Q242 48 255 65 Q248 82 228 75" fill="#0f172a"/>
 
-              <!-- Eyes - bright copper sulfate blue -->
-              <ellipse cx="188" cy="155" rx="13" ry="15" fill="#fff"/>
-              <ellipse cx="232" cy="155" rx="13" ry="15" fill="#fff"/>
-              <circle cx="190" cy="157" r="8" fill="#0284c7"/>
-              <circle cx="234" cy="157" r="8" fill="#0284c7"/>
-              <circle cx="192" cy="154" r="3.5" fill="#fff"/>
-              <circle cx="236" cy="154" r="3.5" fill="#fff"/>
-              <!-- Slight fang hint smile -->
-              <path d="M192 182 Q210 198 228 182" fill="none" stroke="#0f172a" stroke-width="2.8" stroke-linecap="round"/>
+              <!-- Eyes - large, bright blue (copper sulfate) -->
+              <ellipse cx="186" cy="148" rx="14" ry="16" fill="#fff"/>
+              <ellipse cx="234" cy="148" rx="14" ry="16" fill="#fff"/>
+              <!-- Iris -->
+              <circle cx="188" cy="150" r="9" fill="#0284c7"/>
+              <circle cx="236" cy="150" r="9" fill="#0284c7"/>
+              <!-- Pupil + shine -->
+              <circle cx="189" cy="151" r="4.5" fill="#0c4a6e"/>
+              <circle cx="237" cy="151" r="4.5" fill="#0c4a6e"/>
+              <circle cx="191" cy="147" r="3.2" fill="#fff"/>
+              <circle cx="239" cy="147" r="3.2" fill="#fff"/>
+              <!-- Soft lower lash line -->
+              <path d="M172 158 Q186 165 200 158" fill="none" stroke="#0f172a" stroke-width="1.2" opacity="0.4"/>
+              <path d="M220 158 Q234 165 248 158" fill="none" stroke="#0f172a" stroke-width="1.2" opacity="0.4"/>
 
-              <!-- Hourglass earring (left ear) -->
-              <g transform="translate(265, 165)" filter="url(#softGlow)">
-                <line x1="0" y1="-8" x2="0" y2="0" stroke="#94a3b8" stroke-width="2"/>
-                <path d="M0 0 L10 14 L0 28 L-10 14 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.5"/>
-                <line x1="-6" y1="14" x2="6" y2="14" stroke="#0c4a6e" stroke-width="1.5"/>
+              <!-- Subtle smirk (Vanitas expression) -->
+              <path d="M190 178 Q210 192 230 178" fill="none" stroke="#0f172a" stroke-width="2.6" stroke-linecap="round"/>
+              <!-- Tiny fang hint -->
+              <path d="M218 182 L221 188 L224 182" fill="#0f172a" opacity="0.7"/>
+
+              <!-- Hourglass earring (signature, left side from viewer) -->
+              <g transform="translate(268, 158)" filter="url(#softGlow)">
+                <line x1="0" y1="-10" x2="0" y2="0" stroke="#cbd5e1" stroke-width="2"/>
+                <!-- Hourglass shape -->
+                <path d="M0 0 L11 16 L0 32 L-11 16 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.8"/>
+                <line x1="-7" y1="16" x2="7" y2="16" stroke="#0c4a6e" stroke-width="1.8"/>
+                <!-- Small sand dots -->
+                <circle cx="-2" cy="10" r="1.2" fill="#e0f2fe" opacity="0.8"/>
+                <circle cx="3" cy="22" r="1.2" fill="#e0f2fe" opacity="0.8"/>
               </g>
-              <!-- Small stud right ear -->
-              <circle cx="155" cy="165" r="3" fill="#94a3b8"/>
+              <!-- Helix rings -->
+              <circle cx="272" cy="148" r="3.5" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+              <circle cx="276" cy="142" r="2.5" fill="none" stroke="#94a3b8" stroke-width="1.3"/>
+              <!-- Right ear stud -->
+              <circle cx="152" cy="158" r="3.5" fill="#94a3b8"/>
 
               <!-- Floating Book of Vanitas -->
               <g class="floating-book">
-                <rect x="300" y="300" width="70" height="90" rx="5" fill="#0c4a6e" stroke="#38bdf8" stroke-width="2.5"/>
-                <rect x="308" y="312" width="54" height="10" rx="2" fill="#7dd3fc" opacity="0.75"/>
-                <rect x="308" y="330" width="42" height="5" rx="1" fill="#38bdf8" opacity="0.5"/>
-                <rect x="308" y="342" width="48" height="5" rx="1" fill="#38bdf8" opacity="0.5"/>
-                <rect x="308" y="354" width="38" height="5" rx="1" fill="#38bdf8" opacity="0.5"/>
-                <circle cx="335" cy="375" r="12" fill="none" stroke="#7dd3fc" stroke-width="2.5"/>
-                <path d="M328 375 L335 382 L345 368" fill="none" stroke="#7dd3fc" stroke-width="2.5"/>
-                <!-- Chains -->
-                <circle cx="310" cy="305" r="4" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
-                <circle cx="360" cy="305" r="4" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                <rect x="305" y="295" width="72" height="95" rx="5" fill="#0c4a6e" stroke="#38bdf8" stroke-width="2.5"/>
+                <rect x="313" y="308" width="56" height="11" rx="2" fill="#7dd3fc" opacity="0.8"/>
+                <rect x="313" y="328" width="44" height="5" rx="1" fill="#38bdf8" opacity="0.55"/>
+                <rect x="313" y="340" width="50" height="5" rx="1" fill="#38bdf8" opacity="0.55"/>
+                <rect x="313" y="352" width="40" height="5" rx="1" fill="#38bdf8" opacity="0.55"/>
+                <circle cx="341" cy="378" r="13" fill="none" stroke="#7dd3fc" stroke-width="2.5"/>
+                <path d="M333 378 L341 386 L352 370" fill="none" stroke="#7dd3fc" stroke-width="2.5"/>
+                <circle cx="315" cy="300" r="4.5" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                <circle cx="367" cy="300" r="4.5" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
               </g>
             </svg>
           </div>
